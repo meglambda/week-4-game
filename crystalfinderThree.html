@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="reset.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style type="text/css">
+body  {
+	text-align: center;
+	font-family: 'Arial Bold';
+	font-size: 30px;
+/*	background-image: url("./assets/chemistry.jpg");*/
+	background-image: url("./assets/background.jpg");
+		/*background: url(asdlkf);*/
+	}
+	.crystal-image { 
+		width: 50px;
+		height:50px;
+		float: left;
+
+	
+
+	}
+	.gemBucket  {
+	margin: auto;
+	padding: 10px;	
+	width: 15%;
+	}
+	#gemOne, 
+	#gemTwo, 
+	#gemThree,
+	#gemFour, 
+	h1 {
+		border-style: solid;
+		border-color: #000
+		padding:20px;
+	}
+	#winLoseboard {
+		background-color: grey;
+		padding: 10px;
+		border-color: #000
+	}
+</style>
+</head>
+<body>
+	<p>Crystal Collector!</p>
+	<div class="instructions">Click any gem to start! Match the total score to the number to guess to win! </div>
+	<!-- <div class="text-center" id="target-number">Here is your target Number</div> -->
+	<div class="text-center" id="random-number"><!-- this will be a random number generated ref lottery for code -->
+	<div id="Banner">Total Score</div>
+	<div id="TotalScore"></div>
+
+	<div id="winLoseboard">
+		<div id="wins">Wins:</div>
+		<div id="Losses">Losses:</div>
+	</div>
+<div class="gemBucket">
+	<div id="gemOne" class="crystal-image"><img id="gemOneImg" class="crystal-image" src="assets/gem1.jpg" alt="gemshouldbehere"></div>
+	<div id="gemTwo" class="crystal-image"><img id="gemTwoImg" class="crystal-image" src="assets/gem2.jpg" alt="gemshouldbehere"></div>
+	<div id="gemThree" class="crystal-image"><img id="gemThreeImg" class="crystal-image" src="assets/gem3.jpg" alt="gemshouldbehere"></div>
+	<div id="gemFour" class="crystal-image"><img id="gemThreeImg" class="crystal-image" src="assets/gem4.jpg" alt="gemshouldbehere"></div>
+</div>
+
+	
+	<br>
+	<h1>Number to Guess: <span id="number-to-guess"></span></h1>
+
+
+
+<script type="text/javascript">
+	//will eliminate or change to the crystals when they are built 
+	var counter = 0;
+	// var numberOptions = 0;
+	var win = 0; 
+			var lose =0;
+			console.log()
+			var minGuess = 30; 
+			var maxGuess = 150;
+			var minGem = 2;
+			var maxGem = 10;
+			var randomm = Math.floor(Math.random()*50) + 1;
+			console.log(randomm);
+	
+		$(document).ready(function() {
+//if randomm < counter continue
+//if randomm === counter win 
+//if randomm > counter lose 
+			 function checkWin () {
+			 	console.log("random" + randomm + "counter" + counter)
+			 	if (randomm > counter)
+			 	 {
+			 		console.log("countinue");
+			 	}
+			 	else if (randomm === counter) {
+			 		alert("you win!"); 
+			 		win++;
+			 		reset ();
+			 		$("#wins").text("wins:" + win);
+
+			 	}
+			 	else {
+			 		alert ("You lose!");
+			 		lose++; 
+			 		$("#Losses").text("Losses:" + lose);
+			 		reset ();
+			 	}
+			 };
+			
+
+			
+			$("#number-to-guess").text(randomm);
+			var gem1 = Math.floor(Math.random()*10) +1;
+			var gem2 = Math.floor(Math.random()*15) +1;
+			var gem3 = Math.floor(Math.random()*4) +1;
+			var gem4 = Math.floor(Math.random()*3) +1;
+			console.log(gem1, gem2, gem3, gem4);
+				$("#gemOne").on("click" , function() {
+
+						
+						counter += gem1;
+						console.log(counter);
+						console.log(gem1);
+						checkWin ();
+					$("#TotalScore").text(counter); 
+					console.log(counter);
+						
+				});
+				$("#gemTwo").on("click" , function() {
+
+						
+						counter += gem2;
+						console.log(counter);
+						console.log(gem2);
+						checkWin ();
+					$("#TotalScore").text(counter); 
+				
+						
+				});
+				$("#gemThree").on("click" , function() {
+
+						
+						counter += gem3;
+						console.log(counter);
+						console.log(gem3);
+						checkWin ();
+					$("#TotalScore").text( counter); 
+					
+						
+				});
+				$("#gemFour").on("click" , function() {
+
+						
+						counter += gem4;
+						console.log(counter);
+						console.log(gem4);
+						checkWin ();
+					$("#TotalScore").text(counter); 
+					console.log(counter);
+						
+				});
+
+				function reset () {
+					randomm = Math.floor(Math.random()*50) + 1;
+					$("#number-to-guess").text(randomm);
+					gem1 = Math.floor(Math.random()*10) +1;
+					gem2 = Math.floor(Math.random()*15) +1;
+					gem3 = Math.floor(Math.random()*4) +1;
+					gem4 = Math.floor(Math.random()*3) +1;
+					counter=0; 
+					console.log(gem1, gem2, gem3, gem4);
+				};
+				// if (counter === randomm) {
+				// 	console.log("you won!");
+				// 	alert("you won!");
+				// }
+
+				// if (counter === randomm) {
+				// 	alert("you win!"); 
+				// }
+				// 	else if (counter >= randomm) { }
+				// 	alert("you lose!")		
+						
+});
+</script>
+	
+</body>
+</html>
